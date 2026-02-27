@@ -1,13 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ShipEngineComponent.h"
 
-// Sets default values for this component's properties
-UShipEngineComponent::UShipEngineComponent()
-{
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
+UShipEngineComponent::UShipEngineComponent() {
 	PrimaryComponentTick.bCanEverTick = true;
 
 	engineMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("Engine Mesh");
@@ -21,25 +14,22 @@ UShipEngineComponent::UShipEngineComponent()
 	}
 }
 
-
 // Called when the game starts
-void UShipEngineComponent::BeginPlay()
-{
+void UShipEngineComponent::BeginPlay() {
 	Super::BeginPlay();
-
-	// ...
 	
 }
 
-
 // Called every frame
-void UShipEngineComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
+void UShipEngineComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
 }
 
+/**
+ * Determines how much speed this engine contributes to the ship's movement.
+ * @return The speed contributed by this engine.
+ */
 int UShipEngineComponent::GetSpeed() {
 	return speed;
 }

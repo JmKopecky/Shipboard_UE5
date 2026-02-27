@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -9,8 +7,7 @@
 
 
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class SHIPBOARD_API UShipEngineComponent : public USceneComponent
-{
+class SHIPBOARD_API UShipEngineComponent : public USceneComponent {
 	GENERATED_BODY()
 
 public:	
@@ -23,6 +20,7 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 	
+	//engine appearance
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Visual")
 	UStaticMeshComponent* engineMeshComponent;
 	
@@ -32,12 +30,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Visual")
 	UMaterialInterface* engineMaterial = nullptr;
 	
+	//maneuverability properties this engine contributes to the ship.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Ship|Engine")
 	int speed;
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
 };

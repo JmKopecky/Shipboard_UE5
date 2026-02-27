@@ -1,15 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseWeaponComponent.h"
 
-// Sets default values for this component's properties
-UBaseWeaponComponent::UBaseWeaponComponent()
-{
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
+UBaseWeaponComponent::UBaseWeaponComponent() {
 	PrimaryComponentTick.bCanEverTick = true;
 
+	//handle weapon appearance
 	weaponMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("Weapon Mesh");
 	weaponMeshComponent->SetupAttachment(this);
 	
@@ -21,6 +15,10 @@ UBaseWeaponComponent::UBaseWeaponComponent()
 	}
 }
 
+/**
+ * Fires this weapon at the target location, triggering the cooldown.
+ * @param target The location we are firing our weapon towards.
+ */
 void UBaseWeaponComponent::fireWeapon(FVector target) {
 	if (!canFire()) {
 		return;
@@ -29,25 +27,25 @@ void UBaseWeaponComponent::fireWeapon(FVector target) {
 	currentCooldown = COOLDOWN;
 }
 
+/**
+ * Determines if this weapon is permitted to fire again yet.
+ * @return True if the cooldown has expired.
+ */
 bool UBaseWeaponComponent::canFire() {
 	return currentCooldown <= 0.0f;
 }
 
 // Called when the game starts
-void UBaseWeaponComponent::BeginPlay()
-{
+void UBaseWeaponComponent::BeginPlay() {
 	Super::BeginPlay();
-
-	// ...
 	
 }
 
-
 // Called every frame
-void UBaseWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
+void UBaseWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	//decrease current cooldown until it reaches 0.
 	if (!canFire()) {
 		currentCooldown = std::max(0.0f, currentCooldown - DeltaTime);
 	}

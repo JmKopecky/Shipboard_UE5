@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -13,7 +11,6 @@ class SHIPBOARD_API UBaseWeaponComponent : public USceneComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
 	UBaseWeaponComponent();
 	
 	UFUNCTION(BlueprintCallable)
@@ -26,6 +23,7 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 	
+	//defines weapon appearance
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Visual")
 	UStaticMeshComponent* weaponMeshComponent;
 	
@@ -35,6 +33,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Visual")
 	UMaterialInterface* weaponMaterial = nullptr;
 	
+	//variables related to firing cooldowns
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Ship|Weapons")
 	float COOLDOWN;
 	
@@ -43,6 +42,4 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
 };

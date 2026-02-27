@@ -1,9 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "ShipEngineComponent.h"
+#include "BaseWeaponComponent.h"
 #include "GameFramework/Pawn.h"
 #include "BaseShip.generated.h"
 
@@ -13,12 +12,9 @@ class SHIPBOARD_API ABaseShip : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	ABaseShip();
 	
 	UFUNCTION(BlueprintCallable)
-	//Add or subtract to the current speed percentage of this ship.
-	//The final value of currentSpeedPercent is still bounded between 0 and 1.
 	void accelerateSpeed(float acceleration);
 
 protected:

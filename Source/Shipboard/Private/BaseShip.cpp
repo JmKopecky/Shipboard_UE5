@@ -1,14 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseShip.h"
 
-#include "HLSLMathAliases.h"
 #include "Engine/Engine.h"
 
-// Sets default values
 ABaseShip::ABaseShip() {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
 	//handle the main mesh (body)
@@ -62,12 +56,14 @@ void ABaseShip::accelerateSpeed(float acceleration) {
 // Called when the game starts or when spawned
 void ABaseShip::BeginPlay() {
 	Super::BeginPlay();
+	//populate all engine components
 	GetComponents(UShipEngineComponent::StaticClass(), engines);
 }
 
 // Called every frame
 void ABaseShip::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
+	//accelerate forward
 	moveBySpeed(DeltaTime);
 }
 
